@@ -11,6 +11,11 @@ from django.contrib.auth import login, authenticate, logout  # crear la auth ses
 
 # ## models: user is provided by django by default
 from django.contrib.auth.models import User
+from .models import Task
+
+
+# ## forms:
+from .forms import TaskForm
 
 
 
@@ -90,4 +95,20 @@ def signout(request):
 # ### Tasks
 def tasks(request):
     return render(request, 'tasks/tasks.html')
+
+
+def create_task(request):
+    if request.method == 'GET':
+        return render(request, 'tasks/create_task.html', {
+            'form': TaskForm()
+        })
+    else:
+        Task.objects.create(
+            title = request.POST['title'],
+            description = request.POST['description'],
+            important = request.POST['important'],
+            user_id=1
+        )
+        return redirect('tasks')
+
 
