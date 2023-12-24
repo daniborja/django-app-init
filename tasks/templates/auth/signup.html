@@ -1,8 +1,9 @@
 <h1>Sign Up</h1>
 <hr />
 
-<!-- Form -->
-<form action="/signup" method="POST">
+<!-- ====== Form ====== -->
+<!-- without actions it's sent to the same url -->
+<form method="POST">
   <!-- CSRF token -->
   {% csrf_token %}
 
