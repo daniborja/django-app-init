@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
+from django.db import IntegrityError
 
 
 # ## auth
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login  # crear la auth session (cookie)
 
 
 # ## models: user is provided by django by default
@@ -34,8 +36,12 @@ def signup(request):
                     password=request.POST['password1']
                 )
                 user.save()
-                return redirect('home')
-            except Exception as e:
+
+                # login in django (session cookie)
+                login(request, user) # crea la sessionid en cookies
+
+                return redirect('tasks')
+            except IntegrityError as e: # Exception (general err)
                 print(e)
                 return render(request, 'auth/signup.html', {
                     'form': UserCreationForm(),
@@ -46,4 +52,11 @@ def signup(request):
             'form': UserCreationForm(),
             'error': 'Passwords do not match'
         }) 
+
+
+
+
+# ### Tasks
+def tasks(request):
+    return render(request, 'tasks/tasks.html')
 
