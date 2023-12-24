@@ -1,0 +1,22 @@
+{% extends 'layouts/task_layout.html' %}
+
+<!-- block is a Keyword & content is a standarized name, but i could be anything -->
+{% block content %}
+
+<h1>Log In</h1>
+<hr />
+
+<!-- si existe el error lo renderiza, sino no pasa nada, no da error. No req condicionales -->
+{{error}}
+
+<!-- action to ligin url by name -->
+<form action="{% url 'login' %}" method="POST">
+  <!-- CSRF token -->
+  {% csrf_token %}
+
+  {{form}}
+
+  <button type="submit">Log In</button>
+</form>
+
+{% endblock %}

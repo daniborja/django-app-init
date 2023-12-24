@@ -5,8 +5,8 @@ from django.db import IntegrityError
 
 
 # ## auth
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, logout  # crear la auth session (cookie)
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, authenticate, logout  # crear la auth session (cookie)
 
 
 # ## models: user is provided by django by default
@@ -21,6 +21,7 @@ def home(request):
 
 
 
+# ### Auth
 def signup(request):
     if request.method == 'GET':
         return render(request, 'auth/signup.html', {
@@ -52,6 +53,29 @@ def signup(request):
             'form': UserCreationForm(),
             'error': 'Passwords do not match'
         }) 
+
+
+
+def singin(request):
+    if request.method == 'GET':
+        return render(request, 'auth/login.html', {
+            'form': AuthenticationForm()
+        })
+    else:
+        # validate user data (if it exists in db and is correct password) retur user
+        user = authenticate(
+            request,
+            username=request.POST['username'],
+            password=request.POST['password']
+        )
+        if user is None:
+            return render(request, 'auth/login.html', {
+                'form': AuthenticationForm(),
+                'error': 'Username or password is incorrect'
+            })
+        else:
+            login(request, user) # create session and sessionid in cookies
+            return redirect('tasks')
 
 
 
