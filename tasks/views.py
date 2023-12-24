@@ -125,6 +125,22 @@ def create_task(request):
 def task(request, id):
     # validate that the task belongs to authUser
     task_db = get_object_or_404(Task, id=id, user_id=request.user.id)
-    return render(request, 'tasks/task.html', {
-        'task': task_db
-    })
+
+    if request.method == 'GET':
+        form = TaskForm(instance=task_db)
+        return render(request, 'tasks/task.html', {
+            'task': task_db,
+            'form': form
+        })
+    else:
+        try:
+            # ### upd task
+            updated_task = TaskForm(request.POST, instance=task_db)
+            updated_task.save()
+            return redirect('tasks')
+        except:
+            return render(request, 'tasks/task.html', {
+                'form': TaskForm(),
+                'error': 'Please provide valid data'
+            })
+

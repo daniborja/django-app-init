@@ -6,7 +6,17 @@
 <h1>{{task.title}}</h1>
 <hr />
 
-<p>{{task.description}}</p>
-<p>{{task.user.username}}</p>
+
+<h2>Update Task</h2>
+
+<!-- form to upd -->
+<form method="POST">
+  <!-- CSRF token -->
+  {% csrf_token %}
+
+  {{form}}
+
+  <button type="submit">Save</button>
+</form>
 
 {% endblock %}
