@@ -6,6 +6,21 @@
 <h1>tasks</h1>
 <hr />
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quis et ratione tempora distinctio maiores ipsum, eligendi numquam, ipsa reprehenderit sit. Inventore quam ab ad delectus rerum suscipit nisi dicta!
+<!-- ====== FOR loop ====== -->
+<ul class="card-container">
+  {% for task in tasks %}
+
+  <article class="card">
+    <!-- url 'url_name' params_to_concat: /projects/id -->
+    {% comment %} <a href="{% url 'project' project.id %}"> {% endcomment %}
+      <h2>{% if task.done %} ✅ {% else %} ⏰ {% endif %}{{task.title}}</h2>
+    {% comment %} </a> {% endcomment %}
+  
+    <p>{{task.description}}</p>
+    <p>{{task.user.username}}</p>
+  </article>
+
+  {% endfor %}
+</ul>
 
 {% endblock %}

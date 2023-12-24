@@ -94,7 +94,11 @@ def signout(request):
 
 # ### Tasks
 def tasks(request):
-    return render(request, 'tasks/tasks.html')
+    tasks_db = Task.objects.filter(user_id = request.user.id)
+    return render(request, 'tasks/tasks.html', {
+            'tasks': tasks_db
+        }
+    )
 
 
 def create_task(request):

@@ -14,7 +14,10 @@ class Task(models.Model): # inheritance: (models.Model)
     created_at = models.DateTimeField(
       auto_now_add=True # createdAt x default
     )
-    completed_at = models.DateTimeField(null=True)
+    completed_at = models.DateTimeField(
+      null=True, # para db
+      blank=True # para el admin dashboard
+    )
 
     # ### relations/associations (User 1:N Tasks) - User created by django x default
     user = models.ForeignKey(User, on_delete=models.CASCADE) # onDelete Cascade
