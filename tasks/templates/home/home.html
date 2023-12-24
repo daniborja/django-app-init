@@ -2,6 +2,42 @@
 
 <!-- block is a Keyword & content is a standarized name, but i could be anything -->
 {% block content %}
-<h1>Home</h1>
+
+<section class="card card-body">
+  <h1 class="display-1 text-center">Django App</h1>
+  <hr />
+
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate officia
+    sint et saepe animi porro sequi repudiandae provident. Voluptas, at quod
+    vel, labore neque esse eaque dolorum possimus amet dolorem perferendis
+    quidem ab vero nihil reprehenderit fuga! Fugiat illo quisquam repellendus
+    optio saepe omnis debitis rerum nam impedit? Quaerat dignissimos minima
+    quisquam adipisci laudantium voluptatibus, atque dolores cumque impedit, quo
+    quidem pariatur tempore nihil omnis! Blanditiis dignissimos officia
+    veritatis praesentium exercitationem cum dolore delectus! Reiciendis ex
+    blanditiis laborum quod quas libero temporibus tenetur eum sed ullam modi
+    sint harum recusandae animi enim iure, iusto aliquid aspernatur. Ad
+    similique quasi voluptates?
+  </p>
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate officia
+    sint et saepe animi porro sequi repudiandae provident. Voluptas, at quod
+    vel, labore neque esse eaque dolorum possimus amet dolorem perferendis
+    quidem ab vero nihil reprehenderit fuga! Fugiat illo quisquam repellendus
+    optio saepe omnis debitis rerum nam impedit? Quaerat dignissimos minima
+    quisquam adipisci laudantium voluptatibus, atque dolores cumque impedit, quo
+    quidem pariatur tempore nihil omnis! Blanditiis dignissimos officia
+    veritatis praesentium exercitationem cum dolore delectus! Reiciendis ex
+    blanditiis laborum quod quas libero temporibus tenetur eum sed ullam modi
+    sint harum recusandae animi enim iure, iusto aliquid aspernatur. Ad
+    similique quasi voluptates?
+  </p>
+
+  <div class="text-center">
+    <a href="{% url 'signup' %}" class="btn btn-primary">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+  </div>
+</section>
 
 {% endblock %}
