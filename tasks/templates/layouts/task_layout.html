@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+  </head>
+  <body>
+    <!-- ========= Layout content ========= -->
+    <nav class="navbar">
+      <ul>
+        <!-- url 'url_name' -->
+        <li><a href="{% url 'home' %}">Home</a></li>
+
+        <!-- ====== Django auth ====== -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'tasks' %}">Tasks</a></li>
+
+        <!-- *** logout *** -->
+        <li><a href="{% url 'tasks' %}">Logout</a></li>
+
+        {% else %}
+        <li><a href="{% url 'signup' %}">Signup</a></li>
+        <li><a href="{% url 'signup' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- ====== Content to be injected ====== -->
+    <main class="container">
+      <!-- --- BLOCKS: donde se inyectara el html del template q use este layout --- -->
+      {% block content %} {% endblock %}
+    </main>
+  </body>
+</html>
