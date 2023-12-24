@@ -17,6 +17,7 @@ urlpatterns = [
     path('tasks/', views.tasks, name='tasks'),
     path('tasks/create', views.create_task, name='create_task'),
     path('tasks/complete/<int:id>', views.complete_task, name='complete_task'),
+    path('tasks/delete/<int:id>', views.delete_task, name='delete_task'),
     path('tasks/<int:id>', views.task, name='task'), # URL Params - al final
 
 ]

@@ -154,3 +154,14 @@ def complete_task(request, id):
         task.completed_at = timezone.now()
         task.save()
         return redirect('tasks')
+
+
+def delete_task(request, id):
+    # otra forma de hacer la query (pk, user)
+    if request.method == 'POST':
+        try:
+            task = get_object_or_404(Task, pk=id, user=request.user)
+            task.delete()
+            return redirect('tasks')
+        except:
+            return redirect('tasks')

@@ -100,11 +100,16 @@ ul {
     padding: 3px 12px;
     text-transform: uppercase;
     cursor: pointer;
+    border-radius: 3px;
   }
 
   form {
     button {
       width: 100%;
     }
+  }
+
+  & .btn-delete {
+    background: red !important;
   }
 }
