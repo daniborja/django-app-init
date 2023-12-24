@@ -19,3 +19,8 @@ class Task(models.Model): # inheritance: (models.Model)
     # ### relations/associations (User 1:N Tasks) - User created by django x default
     user = models.ForeignKey(User, on_delete=models.CASCADE) # onDelete Cascade
 
+
+    # ## override el toString like in Java
+    def __str__(self):
+        return self.title + " | " + self.user.username
+
