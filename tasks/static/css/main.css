@@ -66,6 +66,12 @@ ul {
   color: white;
 }
 
+.card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .input {
   background-color: wheat;
   padding: 10px;
@@ -80,4 +86,25 @@ ul {
 .btn-primary {
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.action-btns-container {
+  display: flex;
+  flex-direction: column;
+
+  & :nth-child(1) {
+    margin-bottom: 4px;
+  }
+
+  button {
+    padding: 3px 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  form {
+    button {
+      width: 100%;
+    }
+  }
 }

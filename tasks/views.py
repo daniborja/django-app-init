@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 
 # ## auth
@@ -144,3 +145,12 @@ def task(request, id):
                 'error': 'Please provide valid data'
             })
 
+
+def complete_task(request, id):
+    # otra forma de hacer la query (pk, user)
+    task = get_object_or_404(Task, pk=id, user=request.user)
+    if request.method == 'POST':
+        task.done = not task.done # toggle
+        task.completed_at = timezone.now()
+        task.save()
+        return redirect('tasks')

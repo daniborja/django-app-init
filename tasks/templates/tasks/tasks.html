@@ -3,7 +3,7 @@
 <!-- block is a Keyword & content is a standarized name, but i could be anything -->
 {% block content %}
 
-<h1>tasks</h1>
+<h1>My Tasks</h1>
 <hr />
 
 <a href="{% url 'create_task' %}">
@@ -14,15 +14,29 @@
 <ul class="card-container">
   {% for task in tasks %}
 
-  <article class="card">
-    <!-- url 'url_name' params_to_concat: /projects/id -->
-    <a href="{% url 'task' task.id %}">
-      <h2>{% if task.done %} ✅ {% else %} ⏰ {% endif %}{{task.title}}</h2>
-    </a>
+  <div class="card">
+    <div class="card-body">
+      <div>
+        <!-- url 'url_name' params_to_concat: /projects/id -->
+        <a href="{% url 'task' task.id %}">
+          <h2>{% if task.done %} ✅ {% else %} ⏰ {% endif %}{{task.title}}</h2>
+        </a>
 
-    <p>{{task.description}}</p>
-    <p>{{task.user.username}}</p>
-  </article>
+        <p>{{task.description}}</p>
+        <p>{{task.user.username}}</p>
+      </div>
+
+      <!-- Btns -->
+      <div class="action-btns-container">
+        <form action="{% url 'complete_task' task.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit">Complete</button>
+        </form>
+
+        <button>Edit</button>
+      </div>
+    </div>
+  </div>
 
   {% endfor %}
 </ul>
