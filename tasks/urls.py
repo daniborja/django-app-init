@@ -16,5 +16,6 @@ urlpatterns = [
 
     path('tasks/', views.tasks, name='tasks'),
     path('tasks/create', views.create_task, name='create_task'),
+    path('tasks/<int:id>', views.task, name='task'), # URL Params
 
 ]

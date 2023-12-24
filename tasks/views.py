@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.db import IntegrityError
+from django.shortcuts import get_object_or_404
 
 
 # ## auth
@@ -120,3 +121,10 @@ def create_task(request):
                 'error': 'Please provide valid data'
             })
 
+
+def task(request, id):
+    # validate that the task belongs to authUser
+    task_db = get_object_or_404(Task, id=id, user_id=request.user.id)
+    return render(request, 'tasks/task.html', {
+        'task': task_db
+    })

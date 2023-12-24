@@ -1,0 +1,12 @@
+{% extends 'layouts/task_layout.html' %}
+
+<!-- block is a Keyword & content is a standarized name, but i could be anything -->
+{% block content %}
+
+<h1>{{task.title}}</h1>
+<hr />
+
+<p>{{task.description}}</p>
+<p>{{task.user.username}}</p>
+
+{% endblock %}

@@ -6,16 +6,20 @@
 <h1>tasks</h1>
 <hr />
 
+<a href="{% url 'create_task' %}">
+  <button class="btn-primary">Create</button>
+</a>
+
 <!-- ====== FOR loop ====== -->
 <ul class="card-container">
   {% for task in tasks %}
 
   <article class="card">
     <!-- url 'url_name' params_to_concat: /projects/id -->
-    {% comment %} <a href="{% url 'project' project.id %}"> {% endcomment %}
+    <a href="{% url 'task' task.id %}">
       <h2>{% if task.done %} ✅ {% else %} ⏰ {% endif %}{{task.title}}</h2>
-    {% comment %} </a> {% endcomment %}
-  
+    </a>
+
     <p>{{task.description}}</p>
     <p>{{task.user.username}}</p>
   </article>

@@ -72,3 +72,12 @@ ul {
   text-align: center;
   display: block;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.btn-primary {
+  text-transform: uppercase;
+  cursor: pointer;
+}
