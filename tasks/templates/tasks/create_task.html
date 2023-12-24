@@ -6,6 +6,8 @@
 <h1>Create Task</h1>
 <hr />
 
+{{error}}
+
 <form action="{% url 'create_task' %}" method="POST">
   <!-- CSRF token -->
   {% csrf_token %}
