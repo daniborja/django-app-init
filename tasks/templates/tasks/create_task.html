@@ -3,18 +3,25 @@
 <!-- block is a Keyword & content is a standarized name, but i could be anything -->
 {% block content %}
 
-<h1>Create Task</h1>
-<hr />
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <h1>Create Task</h1>
+    <hr />
 
-{{error}}
+    {{error}}
 
-<form action="{% url 'create_task' %}" method="POST">
-  <!-- CSRF token -->
-  {% csrf_token %}
+    <form action="{% url 'create_task' %}" method="POST" class="card card-body">
+      <!-- CSRF token -->
+      {% csrf_token %}
 
-  {{form}}
+      <!-- Custom Styles in form.py -->
+      <div class="d-flex flex-column gap-2 pb-4">
+        {{form}}
+      </div>
 
-  <button type="submit">Save</button>
-</form>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
 
 {% endblock %}

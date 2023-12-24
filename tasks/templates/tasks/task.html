@@ -3,20 +3,23 @@
 <!-- block is a Keyword & content is a standarized name, but i could be anything -->
 {% block content %}
 
-<h1>{{task.title}}</h1>
-<hr />
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <h1>{{task.title}}</h1>
+    <hr />
 
+    <h2>Update Task</h2>
 
-<h2>Update Task</h2>
+    <!-- form to upd -->
+    <form method="POST" class="card card-body">
+      <!-- CSRF token -->
+      {% csrf_token %}
 
-<!-- form to upd -->
-<form method="POST">
-  <!-- CSRF token -->
-  {% csrf_token %}
+      <!-- Custom Styles in form.py -->
+      <div class="d-flex flex-column gap-2 pb-4">{{form}}</div>
 
-  {{form}}
-
-  <button type="submit">Save</button>
-</form>
-
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
