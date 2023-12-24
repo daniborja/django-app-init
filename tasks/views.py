@@ -9,6 +9,7 @@ from django.utils import timezone
 # ## auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout  # crear la auth session (cookie)
+from django.contrib.auth.decorators import login_required
 
 
 # ## models: user is provided by django by default
@@ -95,6 +96,7 @@ def signout(request):
 
 
 # ### Tasks
+@login_required # decorator to securize urls
 def tasks(request):
     tasks_db = Task.objects.filter(user_id = request.user.id)
     return render(request, 'tasks/tasks.html', {
@@ -103,6 +105,7 @@ def tasks(request):
     )
 
 
+@login_required
 def create_task(request):
     if request.method == 'GET':
         return render(request, 'tasks/create_task.html', {
@@ -123,6 +126,7 @@ def create_task(request):
             })
 
 
+@login_required
 def task(request, id):
     # validate that the task belongs to authUser
     task_db = get_object_or_404(Task, id=id, user_id=request.user.id)
@@ -146,16 +150,21 @@ def task(request, id):
             })
 
 
+@login_required
 def complete_task(request, id):
     # otra forma de hacer la query (pk, user)
     task = get_object_or_404(Task, pk=id, user=request.user)
-    if request.method == 'POST':
-        task.done = not task.done # toggle
-        task.completed_at = timezone.now()
-        task.save()
+    try:
+        if request.method == 'POST':
+            task.done = not task.done # toggle
+            task.completed_at = timezone.now()
+            task.save()
+            return redirect('tasks')
+    except:
         return redirect('tasks')
 
 
+@login_required
 def delete_task(request, id):
     # otra forma de hacer la query (pk, user)
     if request.method == 'POST':
