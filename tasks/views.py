@@ -6,7 +6,7 @@ from django.db import IntegrityError
 
 # ## auth
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login  # crear la auth session (cookie)
+from django.contrib.auth import login, logout  # crear la auth session (cookie)
 
 
 # ## models: user is provided by django by default
@@ -52,6 +52,13 @@ def signup(request):
             'form': UserCreationForm(),
             'error': 'Passwords do not match'
         }) 
+
+
+
+def signout(request):
+    logout(request)
+    return redirect('home')
+
 
 
 
