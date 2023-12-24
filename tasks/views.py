@@ -37,7 +37,13 @@ def signup(request):
                 return redirect('home')
             except Exception as e:
                 print(e)
-                return HttpResponse('Username already exists')
-        
-        return HttpResponse('Invalid Password')
+                return render(request, 'auth/signup.html', {
+                    'form': UserCreationForm(),
+                    'error': 'Username already exists'
+                })       
+
+        return render(request, 'auth/signup.html', {
+            'form': UserCreationForm(),
+            'error': 'Passwords do not match'
+        }) 
 
