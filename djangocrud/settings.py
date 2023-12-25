@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # ## prod: espera al ENV  (DATABASE_URL)
+    # ## prod: espera al ENV  (DATABASE_URL) 
     'default': dj_database_url.config(
         # # si falla la connecton a render:
         # Feel free to alter this value to suit your needs.
