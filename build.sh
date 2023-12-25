@@ -4,7 +4,7 @@ set -o errexit
 
 # poetry install
 # ## instalamos los packages de pip q usamos (django entre ellos)
-# pip install -r requirements.txt
+pip install -r requirements.txt
 
 
 python manage.py collectstatic --no-input
